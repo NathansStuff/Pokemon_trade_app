@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-    before_action :ser_item, only: [:show, :edit, :update, :destroy]
+    before_action :set_item, only: [:show, :edit, :update, :destroy]
   
     def index
       @items = Item.all
@@ -28,7 +28,7 @@ class ItemsController < ApplicationController
   
     def update
  
-        if @item.update
+        if @item.update(item_params)
             redirect_to @item
         else
             render 'edit'
@@ -37,18 +37,18 @@ class ItemsController < ApplicationController
     end
   
     def destroy
-        @link.destroy
+        @item.destroy
         redirect_to items_path
     end
   
     private
       # Share common setup or constraints between actions.
-      def set_link
-        @link = Link.find(params[:id])
+      def set_item
+        @item = Item.find(params[:id])
       end
   
       # Only allow a list of trusted parameters through.
-      def link_params
+      def item_params
         params.require(:item).permit(:title, :description)
       end
   end
