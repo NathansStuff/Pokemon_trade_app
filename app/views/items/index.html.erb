@@ -1,0 +1,11 @@
+<h1>The Items Page</h1>
+<div>
+<% @items.each do |item| %>
+
+    <h2>
+        <%= link_to item.title, item %>
+    </h2>
+    <p><%= item.description %></p>
+</div>
+
+<% end %>
