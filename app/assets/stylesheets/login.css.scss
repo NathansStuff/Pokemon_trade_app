@@ -1,0 +1,40 @@
+
+/* Login*/
+.login-div {
+    background: #1F7A8C;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0px 0px 10px 0px;
+    max-width: 400px;
+    margin: 0 auto;
+
+}
+.username, .password {
+    margin-bottom: 10px;
+}
+.login-button {
+    width: 100%;
+    background-color: #BFDBF7;
+}
+.login-remember {
+    font-weight: normal;
+}
+.login-title {
+    text-align: center;
+    font-weight: bold;
+    font-size: 30px;
+}
+.login-sub-title {
+    text-align: center;
+    font-size: 15px;
+    margin-bottom: 15px;
+}
+
+.links-signin {
+    margin-top: 5px;
+    text-align: center;
+}
+
+.link-overwrite {
+    color: black;
+}
