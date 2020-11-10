@@ -1,7 +1,13 @@
-<h1><%= @item.title %></h1>
-<p><%= @item.description %></p>
-
-<p>
-<%= link_to 'Edit', edit_item_path(@item), class: "btn btn-default" %>
-<%= link_to 'Destroy', @item, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-default" %>
-</p>
+<div class="show-user-owner">
+    <% if current_user == @item.user %>
+        <p>This is your item.</p>
+        <%= link_to 'Edit', edit_item_path(@item), class: "btn btn-default" %>
+        <%= link_to 'Delete', @item, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+    <% end %>
+</div>
+<div class=show-main>
+    <%= image_tag src='question-mark.jpg', class: 'item-img' %>
+    <h1 class="center"><%= @item.title %></h1>
+    <p class="author center"><%= @item.user.email %></p>
+    <p><%= @item.description %></p>
+</div>
