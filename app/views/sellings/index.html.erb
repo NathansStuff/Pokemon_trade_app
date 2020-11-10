@@ -10,7 +10,7 @@
                 <div class="card selling-item">
                     <div class="card-body">
                         <h2 class="card-title selling-title"><%= link_to item.title, item %></h2>
-                        <p class="card-text"><%= truncate(item.description, :length => 80) %></p>
+                        <p class="card-text"><%= truncate(strip_tags(item.description.to_s), length: 80) %></p>
                     </div>
                     
                     <%= link_to 'Edit', edit_item_path(item), class: "btn btn-default" %>
