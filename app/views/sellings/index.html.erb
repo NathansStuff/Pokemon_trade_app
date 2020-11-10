@@ -1,0 +1,22 @@
+<div class="selling-index">
+    <h1>Home Page for Selling</h1>
+    <h3>Would you like to sell a new item?
+        <%= link_to 'List Item', new_item_path %>
+    </h3>
+    <p>You have <%= @count %> items for sale</p>
+    <div>
+        <% for item in @items %>
+            <% if item.user == current_user %>
+                <div class="card selling-item">
+                    <div class="card-body">
+                        <h2 class="card-title selling-title"><%= link_to item.title, item %></h2>
+                        <p class="card-text"><%= truncate(item.description, :length => 80) %></p>
+                    </div>
+                    
+                    <%= link_to 'Edit', edit_item_path(item), class: "btn btn-default" %>
+                    <%= link_to 'Delete', item, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+                </div>
+            <% end %>
+        <% end %>
+    </div>
+</div>
