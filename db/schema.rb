@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_12_144938) do
+ActiveRecord::Schema.define(version: 2020_11_12_145823) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(version: 2020_11_12_144938) do
     t.decimal "price"
     t.string "thumbnail"
     t.string "condition"
+    t.string "set"
     t.index ["user_id"], name: "index_items_on_user_id"
   end
 
