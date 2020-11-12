@@ -1,3 +1,10 @@
-<h1>New Item</h1>
-
-<%= render 'form', link: @item %>
+<h1 class="center">New Item</h1>
+<% if current_user.can_receive_payment? %>
+    <%= render 'form', link: @item %>
+<% else %>
+<div class="login-div">
+    <h1>Authorise Account</h1>
+    <p>Before you can list an item, you need to setup Stripe</p>
+    <%= stripe_connect_button %>
+    </div>
+<% end %>
