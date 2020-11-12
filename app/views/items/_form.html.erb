@@ -25,6 +25,10 @@
       <%= f.rich_text_area :description, class: "form-control" %>
     </div>
     <div class="form-group">
+      <%= f.label :condition %>
+      <%= f.select :condition, ["Graded","Mint","Played","Heavily Played"]%>
+    </div>
+    <div class="form-group">
       <%= f.label :price %><br>
       <%= f.number_field :price, value: number_to_currency(f.object.price.to_f, delimiter: '', unit: ''), step: :any, class: "form-control" %>
     </div>
