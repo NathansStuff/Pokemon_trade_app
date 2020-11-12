@@ -16,13 +16,17 @@
       <%= f.label :title %><br>
       <%= f.text_field :title, class: "form-control" %>
     </div>
-      <div class="form-group">
+    <div class="form-group">
       <%= f.label :thumbnail %><br>
       <%= f.file_field :thumbnail, class: "form-control" %>
     </div>
     <div class="form-group">
       <%= f.label :description %><br>
       <%= f.rich_text_area :description, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :price %><br>
+      <%= f.number_field :price, value: number_to_currency(f.object.price.to_f, delimiter: '', unit: ''), step: :any, class: "form-control" %>
     </div>
     <br>
     <div class="form-group">
