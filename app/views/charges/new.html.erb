@@ -1,0 +1,22 @@
+<%= form_tag charges_path do %>
+  <article>
+    <% if flash[:error].present? %>
+      <div id="error_explanation">
+        <p><%= flash[:error] %></p>
+      </div>
+    <% end %>
+    <div class="login-div">
+        <label class="amount ">
+            <p>
+                You are about to buy <%= @item.title %> for $<%= @item.price %>
+            </p>
+        </label>
+    </div>
+  </article>
+
+  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+          data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+          data-description="<%= @item.title %>"
+          data-amount="<%=@item.price.to_i * 100%>"
+          data-locale="auto"></script>
+<% end %>

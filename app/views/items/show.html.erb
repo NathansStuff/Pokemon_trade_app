@@ -17,5 +17,6 @@
     <div>
         <p class="author center"><%= @item.user.email %></p>
         <p><%= @item.description %></p>
+        <%= link_to 'Buy', new_charges_path(amount: @item.price, item: @item, title: @item.title) %>
     </div>
 </div>

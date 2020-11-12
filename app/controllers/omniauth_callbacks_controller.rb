@@ -13,7 +13,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
         flash[:notice] = 'Stripe Account Created And Connected' if is_navigational_format?
       else
         session["devise.stripe_connect_data"] = request.env["omniauth.auth"]
-        redirect_to host_dashboard
+        redirect_to root_path
       end
     end
   
