@@ -9,4 +9,13 @@ module ApplicationHelper
             content_tag :span, "Connect with Stripe"
         end
     end
+
+    def profile_avatar
+        if current_user.avatar.attached?
+            image_tag(current_user.avatar_thumbnail)
+        else
+            image_tag('default_avatar.png')
+        end
+    end
+    
 end

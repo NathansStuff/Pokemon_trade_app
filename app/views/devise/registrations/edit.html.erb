@@ -1,10 +1,19 @@
 <div class="login-div">
 
-  <div class="login-title"><h2>Edit <%= resource_name.to_s.humanize %></h2></div>
+  <div class="login-title"><h2>Edit Profile</h2></div>
 
   <div class="form">
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
       <%= render "devise/shared/error_messages", resource: resource %>
+      
+      <div class='profile-avatar'>
+        <%= profile_avatar %>
+      </div>
+
+      <div class="field username">
+        <%= f.label :username %>
+        <%= f.text_field :username, class:"form-control", autofocus: true, autocomplete: "email", placeholder: "Username" %>
+      </div>
 
       <div class="field username">
         <%= f.label :email %><br />
