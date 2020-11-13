@@ -28,3 +28,7 @@
         <% end %>
     </div>
 </div>
+<div>
+    <%= render 'comments/comments', commentable: @item %>
+    <%= render 'comments/form', commentable: @item %>
+</div>

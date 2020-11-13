@@ -1,0 +1,6 @@
+<p>Comments</p>
+<% commentable.comments.each do |comment| %>
+    <div>
+        <p><strong><%= comment.user.email %>:</strong> <%= comment.body %></p>
+    </div>
+<% end %>
