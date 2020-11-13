@@ -3,19 +3,21 @@
 
     <% @items.each do |item| %>
         <div class="card" style="width: 40rem;">
-            <%= image_tag src='question-mark.jpg', class: 'item-img' %>
-            <div class="card-body">
-                <h5 class="card-title"><%= item.title %></h5>
-                <p class="card-text"><%= truncate(strip_tags(item.description.to_s), length: 80) %></p>
+            <%= image_tag item.thumbnail, class: 'item-img' %>
+            <div class="card-bodycard-text">
+                <h2 class=" center"><%= item.title %></h2>
+                <p class="card-bodycard-text-p"><%= truncate(strip_tags(item.description.to_s), length: 80) %></p>
             </div>
             <ul class="list-group list-group-flush">
-                <li class="list-group-item">$<%= item.price %></li>
-                <li class="list-group-item"><%= item.condition %></li>
-                <li class="list-group-item"><%= item.set %></li>
+                <li class="list-group-item">Price: $<%= item.price %></li>
+                <li class="list-group-item">Condition: <%= item.condition %></li>
+                <li class="list-group-item">Set: <%= item.set %></li>
             </ul>
             <div class="card-body card-buttons">
                 <%= link_to 'View', item, class:"btn btn-primary btn-block btn-special" %>
-                <a href="#" class="btn btn-success btn-block btn-special">Buy Item</a>
+                <% if current_user.can_receive_payment? %>
+                    <button class='btn btn-success btn-block'><%= link_to 'Buy', new_charges_path(amount: item.price, item: item, title: item.title) %>
+                <% end %>
             </div>
         </div>
 

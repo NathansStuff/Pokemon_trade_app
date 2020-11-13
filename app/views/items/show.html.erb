@@ -16,6 +16,15 @@
         <h3>Set: <%= @item.set %></h3>
         <h3>Seller: <%= @item.user.email %>
         <h3>Description: </h3><p><%= @item.description %></p>
-        <%= link_to 'Buy', new_charges_path(amount: @item.price, item: @item, title: @item.title) %>
+        
+        <% if current_user.can_receive_payment? %>
+            
+            <button class='btn btn-success btn-block'><%= link_to 'Buy', new_charges_path(amount: @item.price, item: @item, title: @item.title) %>
+        <% else %>
+            <div class='connect-stripe'>
+                <p>To buy this item, connect your stripe account!</p>
+                <%= stripe_connect_button %>
+            </div>
+        <% end %>
     </div>
 </div>
