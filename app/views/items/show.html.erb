@@ -7,6 +7,7 @@
 </div>
 <div class=show-main>
     <%= image_tag src='question-mark.jpg', class: 'item-img' %>
+    <%= image_tag @item.thumbnail %>
     <div>
         <h1 class="center"><%= @item.title %></h1>
         <h3>$<%= @item.price %>
