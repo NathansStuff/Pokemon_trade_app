@@ -3,4 +3,4 @@ Rails.configuration.stripe = {
     :private_key => Rails.application.credentials.dig(:stripe, :private_key),
  }
 
-Stripe.api_key = Rails.application.credentials.dig(:stripe, :private_key)
+Stripe.api_key = Rails.application.credentials.dig(:stripe_private_key)
