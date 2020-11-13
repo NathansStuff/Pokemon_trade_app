@@ -18,4 +18,12 @@ module ApplicationHelper
         end
     end
     
+    def users_profile_avatar(user)
+        if user.avatar.attached?
+            image_tag(user.avatar_thumbnail)
+        else
+            image_tag('default_avatar.png')
+        end
+    end
+
 end

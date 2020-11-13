@@ -1,6 +1,15 @@
 <p>Comments</p>
 <% commentable.comments.each do |comment| %>
-    <div>
-        <p><strong><%= comment.user.email %>:</strong> <%= comment.body %></p>
+    <div class='comment-main'>
+        <div class='comment-user'>
+            <p><strong><%= comment.user.username ? comment.user.username : comment.user.email %></strong></p>
+            <div class='comment-avatar'>
+                <%= users_profile_avatar(comment.user) %>
+            </div>
+        </div>
+
+        <div class='comment-body'>
+            <p><%= comment.body %></p>
+        </div>
     </div>
 <% end %>

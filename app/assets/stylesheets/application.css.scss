@@ -21,6 +21,7 @@
 @import 'index';
 @import 'show';
 @import 'selling_index';
+@import 'comments';
 
  body {
      background-color: #BFDBF7;
@@ -31,6 +32,6 @@
 }
 
 .profile-avatar {
-    width: 150px;
-    height: 150px;
+    width: 100px;
+    height: 100px;
 }

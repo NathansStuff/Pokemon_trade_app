@@ -1,34 +1,38 @@
-<div class="show-user-owner">
+<div class='show-page-main'>
     <% if can? :edit, @item %>
-        <p>This is your item.</p>
-        <%= link_to 'Edit', edit_item_path(@item), class: "btn btn-default" %>
-        <%= link_to 'Delete', @item, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+        <div class="show-user-owner">
+            <p><strong>This is your item.</strong>
+            <%= link_to 'Edit', edit_item_path(@item), class: "btn btn-default" %>
+            <%= link_to 'Delete', @item, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+            </p>
+        </div>
     <% end %>
-</div>
-<div class=show-main>
-    <div class='show-main-img'>
-    <%= image_tag @item.thumbnail, class: 'item-img' %>
-    </div>
-    <div class='show-main-info'>
-        <h1 class="center"><%= @item.title %></h1>
-        <h3>Selling Price: $<%= @item.price %></h3>
-        <h3>Condition: <%= @item.condition %></h3>
-        <h3>Set: <%= @item.set %></h3>
-        <h3>Seller: <%= @item.user.email %>
-        <h3>Description: </h3><p><%= @item.description %></p>
-        
-        <% if current_user.can_receive_payment? %>
+
+    <div class=show-main>
+        <div class='show-main-img'>
+        <%= image_tag @item.thumbnail, class: 'item-img' %>
+        </div>
+        <div class='show-main-info'>
+            <h1 class="center"><%= @item.title %></h1>
+            <h3>Selling Price: $<%= @item.price %></h3>
+            <h3>Condition: <%= @item.condition %></h3>
+            <h3>Set: <%= @item.set %></h3>
+            <h3>Seller: <%= @item.user.username ? @item.user.username : @item.user.email %>
+            <h3>Description: </h3><p><%= @item.description %></p>
             
-            <button class='btn btn-success btn-block'><%= link_to 'Buy', new_charges_path(amount: @item.price, item: @item, title: @item.title) %>
-        <% else %>
-            <div class='connect-stripe'>
-                <p>To buy this item, connect your stripe account!</p>
-                <%= stripe_connect_button %>
-            </div>
-        <% end %>
+            <% if current_user.can_receive_payment? %>
+                
+                <button class='btn btn-success btn-block'><%= link_to 'Buy', new_charges_path(amount: @item.price, item: @item, title: @item.title) %>
+            <% else %>
+                <div class='connect-stripe'>
+                    <p>To buy this item, connect your stripe account!</p>
+                    <%= stripe_connect_button %>
+                </div>
+            <% end %>
+        </div>
     </div>
-</div>
-<div>
-    <%= render 'comments/comments', commentable: @item %>
-    <%= render 'comments/form', commentable: @item %>
+    <div>
+        <%= render 'comments/comments', commentable: @item %>
+        <%= render 'comments/form', commentable: @item %>
+    </div>
 </div>
