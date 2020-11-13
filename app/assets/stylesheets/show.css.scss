@@ -6,3 +6,21 @@
     margin-left: 20vw;
     margin-bottom: 20px;
 }
+
+.show-main-img {
+    max-width: 500px;
+    max-height: 500px;
+}
+
+.show-main-info h3 {
+    margin-top: 5px;
+}
+
+@media only screen and (min-width: 768px) {
+    .show-main {
+        display: flex;
+    }
+    .show-main-info {
+        margin-left: 10px;
+    }
+}

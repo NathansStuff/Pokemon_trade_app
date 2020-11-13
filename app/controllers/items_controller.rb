@@ -28,7 +28,7 @@ class ItemsController < ApplicationController
     end
   
     def update
- 
+        authorize! :edit, @item
         if @item.update(item_params)
             redirect_to @item
         else
@@ -38,6 +38,7 @@ class ItemsController < ApplicationController
     end
   
     def destroy
+        authorize! :edit, @item
         @item.destroy
         redirect_to items_path
     end

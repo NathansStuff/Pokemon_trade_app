@@ -1,23 +1,21 @@
 <div class="show-user-owner">
-    <% if current_user == @item.user %>
+    <% if can? :edit, @item %>
         <p>This is your item.</p>
         <%= link_to 'Edit', edit_item_path(@item), class: "btn btn-default" %>
         <%= link_to 'Delete', @item, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
     <% end %>
 </div>
 <div class=show-main>
-    <%= image_tag src='question-mark.jpg', class: 'item-img' %>
-    <%= image_tag @item.thumbnail %>
-    <div>
-        <h1 class="center"><%= @item.title %></h1>
-        <h3>$<%= @item.price %>
-        Condition: <%= @item.condition %>
-        <br>
-        Set: <%= @item.set %></h3>
+    <div class='show-main-img'>
+    <%= image_tag @item.thumbnail, class: 'item-img' %>
     </div>
-    <div>
-        <p class="author center"><%= @item.user.email %></p>
-        <p><%= @item.description %></p>
+    <div class='show-main-info'>
+        <h1 class="center"><%= @item.title %></h1>
+        <h3>Selling Price: $<%= @item.price %></h3>
+        <h3>Condition: <%= @item.condition %></h3>
+        <h3>Set: <%= @item.set %></h3>
+        <h3>Seller: <%= @item.user.email %>
+        <h3>Description: </h3><p><%= @item.description %></p>
         <%= link_to 'Buy', new_charges_path(amount: @item.price, item: @item, title: @item.title) %>
     </div>
 </div>
