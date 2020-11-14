@@ -12,12 +12,12 @@ class User < ApplicationRecord
   #   uid? && provider? && access_code? && publishable_key?
   # end
 
-  def can_receive_payment?
-    current_user.access_code == 'working!' ? true : false
+  def can_receive_payment?(user)
+    user.access_code == 'working!' ? true : false
   end
 
-  def user_can_receive_payment
-    current_user.access_code = 'working!'
+  def user_can_receive_payment(user)
+    user.access_code = 'working!'
   end
 
 

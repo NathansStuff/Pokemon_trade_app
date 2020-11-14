@@ -6,22 +6,21 @@ module ApplicationHelper
 
     # https://dashboard.stripe.com/express/oauth/authorize?response_type=code&client_id=ca_IMY8I5eCZcWpRRGAXxv1Q4CTtPHNIzsh&scope=read_write
 
-    def stripe_connect_button
+    def stripe_connect_button(user)
         link_to stripe_url, class: "btn-stripe-connect" do
             content_tag :span, "Connect with Stripe"
         end
-
-       
+        capable_of_receiving_payment(user)
     end
 
     def can_receive_payment?(user)
         user.access_code?
-      end
-    
-      def capable_of_receiving_payment(user)
+    end
+
+    def capable_of_receiving_payment(user)
         user.access_code = 'yes!'
         user.save!
-      end
+    end
     
 
     def profile_avatar
