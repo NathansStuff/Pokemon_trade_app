@@ -10,7 +10,8 @@ module ApplicationHelper
         link_to stripe_url, class: "btn-stripe-connect" do
             content_tag :span, "Connect with Stripe"
         end
-        capable_of_receiving_payment(current_user)
+
+       
     end
 
     def can_receive_payment?(user)
