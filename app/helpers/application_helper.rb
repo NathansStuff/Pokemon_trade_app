@@ -10,6 +10,7 @@ module ApplicationHelper
         link_to stripe_url, class: "btn-stripe-connect" do
             content_tag :span, "Connect with Stripe"
         end
+        user_can_receive_payment
     end
 
     def profile_avatar
