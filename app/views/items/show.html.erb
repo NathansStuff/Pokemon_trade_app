@@ -1,11 +1,23 @@
 <div class='show-page-main'>
     <% if can? :edit, @item %>
-        <div class="show-user-owner">
-            <p><strong>This is your item.</strong>
-            <%= link_to 'Edit', edit_item_path(@item), class: "btn btn-default" %>
-            <%= link_to 'Delete', @item, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
-            </p>
-        </div>
+        <% if @item.active == true %>
+            <div class="show-user-owner">
+                <p><strong>This is your item.</strong>
+                <%= link_to 'Edit', edit_item_path(@item), class: "btn btn-default" %>
+                <%= link_to 'Delete', @item, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+                </p>
+            </div>
+        <% else %>
+            <div class="show-user-owner">
+                <p>Your item has been sold</p>
+            </div>
+        <% end %>
+    <% else %>
+        <% if @item.active == false %>
+            <div class="show-user-owner">
+                <p>This item has been sold</p>
+            </div>
+        <% end %>
     <% end %>
 
     <div class=show-main>
@@ -20,10 +32,11 @@
             <h3>Seller: <%= @item.user.username ? @item.user.username : @item.user.email %>
             <h3>Description: </h3><p><%= @item.description %></p>
             
-            <% if !can? :edit, @item %>
+            <% if !can? :edit, @item && @item.active == true %>
                 <%# <button class='btn btn-success btn-block'><%= link_to 'Buy', new_charges_path(amount: @item.price, item: @item, title: @item.title) %> 
-                  <button data-stripe="payment">Buy for <%= number_to_currency(@item.price) %></button>
-              
+                <% if @item.active == true %>
+                    <button data-stripe="payment">Buy for <%= number_to_currency(@item.price) %></button>
+                <% end %>
             <% end %>
         </div>
     </div>
