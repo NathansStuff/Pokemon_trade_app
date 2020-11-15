@@ -18,6 +18,7 @@ class ItemsController < ApplicationController
   
     def create
       @item = current_user.items.build(item_params)
+      @item.active = true
 
         if @item.save
             redirect_to @item
