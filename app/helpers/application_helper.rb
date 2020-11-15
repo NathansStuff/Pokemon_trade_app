@@ -1,10 +1,14 @@
 module ApplicationHelper
 
     def stripe_url
+    # "https://connect.stripe.com/oauth/authorize?response_type=code&client_id=#{Rails.application.credentials.dig(:stripe, :connect_client_id)}&scope=read_write"
         "https://connect.stripe.com/express/oauth/authorize?response_type=code&client_id=#{Rails.application.credentials.dig(:stripe, :connect_client_id)}&scope=read_write"
+
     end
 
-    # https://dashboard.stripe.com/express/oauth/authorize?response_type=code&client_id=ca_IMY8I5eCZcWpRRGAXxv1Q4CTtPHNIzsh&scope=read_write
+
+        # "https://connect.stripe.com/express/oauth/authorize?response_type=code&client_id=#{Rails.application.credentials.dig(:stripe, :connect_client_id)}&scope=read_write"
+
 
     def stripe_connect_button(user)
         link_to stripe_url, class: "btn-stripe-connect" do
