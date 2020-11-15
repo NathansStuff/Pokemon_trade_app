@@ -1,0 +1,15 @@
+<div class="selling-index">
+    <h1>Your sold items</h1>
+        <% for item in @items %>
+            <div class="card selling-item">
+                <div class="card-body">
+                    <h2 class="card-title selling-title"><%= link_to item.title, item %></h2>
+                    <p class="card-text"><%= truncate(strip_tags(item.description.to_s), length: 80) %></p>
+                </div>
+                
+                <%= link_to 'Edit', edit_item_path(item), class: "btn btn-default" %>
+                <%= link_to 'Delete', item, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+            </div>
+        <% end %>
+    </div>
+</div>

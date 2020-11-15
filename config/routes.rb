@@ -7,5 +7,6 @@ Rails.application.routes.draw do
   root 'items#index'
   get 'selling' => 'sellings#index'
   get 'charges/success' => 'charges#success'
-
+  get 'sellings/home' => 'sellings#home'
+  get 'sellings/sold' => 'sellings#sold'
 end
