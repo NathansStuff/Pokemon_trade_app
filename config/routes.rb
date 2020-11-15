@@ -6,5 +6,6 @@ Rails.application.routes.draw do
   resource :charges
   root 'items#index'
   get 'selling' => 'sellings#index'
+  get 'charges/success' => 'charges#success'
 
 end

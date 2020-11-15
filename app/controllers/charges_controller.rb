@@ -23,4 +23,7 @@ class ChargesController < ApplicationController
         flash[:error] = e.message
         redirect_to new_charge_path
       end
+      
+      def success
+      end
 end

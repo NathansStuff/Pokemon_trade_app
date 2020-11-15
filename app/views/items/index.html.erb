@@ -13,9 +13,8 @@
             </ul>
             <div class="card-body card-buttons">
                 <%= link_to 'View', item, class:"btn btn-primary btn-block btn-special" %>
-                <% if current_user.can_receive_payment? %>
-                    <button class='btn btn-success btn-block'><%= link_to 'Buy', new_charges_path(amount: item.price, item: item, title: item.title) %>
-                <% end %>
+                    <%# <button class='btn btn-success btn-block'><%= link_to 'Buy', new_charges_path(amount: item.price, item: item, title: item.title) %> 
+               
             </div>
         </div>
 

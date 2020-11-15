@@ -21,8 +21,9 @@
             <h3>Description: </h3><p><%= @item.description %></p>
             
             <% if !can? :edit, @item %>
-                <button class='btn btn-success btn-block'><%= link_to 'Buy', new_charges_path(amount: @item.price, item: @item, title: @item.title) %>
-                
+                <%# <button class='btn btn-success btn-block'><%= link_to 'Buy', new_charges_path(amount: @item.price, item: @item, title: @item.title) %> 
+                  <button data-stripe="payment">Buy for <%= number_to_currency(@item.price) %></button>
+              
             <% end %>
         </div>
     </div>
@@ -32,3 +33,12 @@
     </div>
 </div>
 
+<script src="https://js.stripe.com/v3"></script>
+<script>
+    document.querySelector("[data-stripe='payment']").addEventListener('click', () => {
+        const stripe = Stripe("<%= Rails.application.credentials.dig(:stripe, :public_key) %>%");
+        stripe.redirectToCheckout({
+            sessionId: "<%= @session_id %>%"
+        });
+    })
+</script>
