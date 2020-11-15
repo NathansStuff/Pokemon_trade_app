@@ -12,14 +12,9 @@ class User < ApplicationRecord
   #   uid? && provider? && access_code? && publishable_key?
   # end
 
-  def can_receive_payment?(user)
-    user.access_code == 'working!' ? true : false
-  end
-
-  def user_can_receive_payment(user)
-    user.access_code = 'working!'
-  end
-
+  def can_receive_payment?
+    uid? && provider? && access_code? && publishable_key?
+end
 
   def avatar_thumbnail
     avatar.variant(resize: '100x100!').processed

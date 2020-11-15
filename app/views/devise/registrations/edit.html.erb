@@ -53,10 +53,10 @@
       </div>
 
       <div>
-      <% if !can_receive_payment?(resource) %>
+      <% if resource.can_receive_payment? %>
 
         <p>You won't be able to sell items until you register with Stripe!</p>
-        <%= stripe_connect_button(resource) %>
+        <%= stripe_connect_button %>
 
       <% else %>
         <p>Successfully connected with stripe!</p>
