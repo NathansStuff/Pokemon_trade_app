@@ -6,15 +6,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: [:stripe_connect]
 
-
-        #  Local server only
-  # def can_receive_payment?
-  #   uid? && provider? && access_code? && publishable_key?
-  # end
-
   def can_receive_payment?
     uid? && provider? && access_code? && publishable_key?
-end
+  end
 
   def avatar_thumbnail
     avatar.variant(resize: '100x100!').processed
