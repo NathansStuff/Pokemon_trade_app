@@ -20,12 +20,14 @@
         
         <ul class="nav navbar-nav">
           <% if user_signed_in? %>
-            <li><%= link_to 'Selling', selling_path %></li>
+            <li><p>Hello, <%= current_user.username %></p>
           <% end %>
         </ul>
 
         <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? %>
+          <li><%= link_to 'Selling', selling_path %></li>
+          <li><%= link_to 'Messages', conversations_path %></li>
           <li><%= link_to 'Account', edit_user_registration_path %></li>
           <li><%= link_to 'Sign Out', destroy_user_session_path, :method => :delete %>
         <% else %>
