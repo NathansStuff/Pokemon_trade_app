@@ -29,6 +29,7 @@
             <h3>Selling Price: $<%= @item.price %></h3>
             <h3>Condition: <%= @item.condition %></h3>
             <h3>Set: <%= @item.set %></h3>
+            <h3>Active: <%= @item.active %></h3>
             <h3>Seller:  
                 <% if !can? :edit, @item %>
                     <%= link_to @user.username, conversations_path(sender_id: current_user.id, recipient_id: @user.id), method: "post" %></h3>
