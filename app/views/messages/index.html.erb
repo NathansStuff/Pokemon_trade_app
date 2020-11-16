@@ -1,10 +1,11 @@
 <div class='login-div'>
+    <h1 class='center white'>Message with <%= @recipient %></h1>
     <% @messages.each do |message| %>
         <% if message.body %>
             <% user = User.find(message.user_id) %>
             <% if user.id == current_user.id %>
                 <div class="message-blue">
-                    <p class="message-content"><%= message.body %></p>
+                    <p class="message-content"><%= strip_tags(message.body) %></p>
                     <div class="message-timestamp-left">
                         <%= message.message_time %>
                     </div>

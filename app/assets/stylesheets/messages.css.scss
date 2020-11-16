@@ -12,11 +12,12 @@
     padding: 10px;
     background-color: #A8DDFD;
     width: 200px;
-    height: 50px;
+    height: auto;
     text-align: left;
     font: 400 .9em 'Open Sans', sans-serif;
     border: 1px solid #97C6E3;
     border-radius: 10px;
+    
 }
 
 .message-orange {
@@ -26,16 +27,18 @@
     padding: 10px;
     background-color: #f8e896;
     width: 200px;
-    height: 50px;
+    height: auto;
     text-align: left;
     font: 400 .9em 'Open Sans', sans-serif;
     border: 1px solid #dfd087;
     border-radius: 10px;
+    margin-bottom: 10px;
 }
 
 .message-content {
     padding: 0;
     margin: 0;
+    margin-bottom: 10px;
 }
 
 .message-timestamp-right {
@@ -44,6 +47,7 @@
     font-weight: 300;
     bottom: 5px;
     right: 5px;
+    margin-top: 10px;
 }
 
 .message-timestamp-left {
@@ -104,4 +108,7 @@
 
 .btn-send {
     margin-top: 10px;
+}
+.white {
+    color: white
 }

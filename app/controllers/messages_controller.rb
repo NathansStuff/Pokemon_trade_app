@@ -5,12 +5,15 @@ class MessagesController < ApplicationController
   
   def index
     @messages = @conversation.messages
+
+    @all = @conversation.messages.to_a
     @message = @conversation.messages.new
-    # for message in @messages
-    #   puts "*****"
-    #   puts message.user
-      
-    # end
+    #Finds the recipients username
+    for message in @all
+      if message.user.id != current_user.id
+        @recipient = message.user.username
+      end
+    end
   end  
   
   def new
