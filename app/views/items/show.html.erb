@@ -29,7 +29,12 @@
             <h3>Selling Price: $<%= @item.price %></h3>
             <h3>Condition: <%= @item.condition %></h3>
             <h3>Set: <%= @item.set %></h3>
-            <h3>Seller: <%= @item.user.username ? @item.user.username : @item.user.email %>
+            <h3>Seller:  
+                <% if !can? :edit, @item %>
+                    <%= link_to @user.username, conversations_path(sender_id: current_user.id, recipient_id: @user.id), method: "post" %></h3>
+                <% else %>
+                    You are the seller!
+                <% end %>
             <h3>Description: </h3><p><%= @item.description %></p>
             
             <% if !can? :edit, @item && @item.active == true %>
