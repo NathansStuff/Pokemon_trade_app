@@ -6,6 +6,11 @@ class MessagesController < ApplicationController
   def index
     @messages = @conversation.messages
     @message = @conversation.messages.new
+    # for message in @messages
+    #   puts "*****"
+    #   puts message.user
+      
+    # end
   end  
   
   def new
