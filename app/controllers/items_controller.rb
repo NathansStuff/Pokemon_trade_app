@@ -28,7 +28,7 @@ class ItemsController < ApplicationController
                 event_id: @item.id
             }
         },
-        success_url: "#{root_url}charges/success?eventId=#{@item.id}",
+        success_url: "#{root_url}payments/success?eventId=#{@item.id}",
         cancel_url: "#{root_url}events"
     )
     @session_id = session.id

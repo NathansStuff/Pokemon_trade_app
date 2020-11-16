@@ -3,6 +3,7 @@ class SellingsController < ApplicationController
     def index
         @items = Item.all
         @count = 0
+        @current_items = []
         for item in @items
             if item.user == current_user
                 @count +=1

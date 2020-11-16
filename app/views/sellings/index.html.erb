@@ -1,21 +1,36 @@
-<div class="selling-index">
+<div class="login-div selling-index">
     <h1>Home Page for Selling</h1>
-    <h3>Would you like to sell a new item?
-        <%= link_to 'List Item', new_item_path %>
+    <h3>
+        <%= link_to 'Sell A New Item', new_item_path, class: 'white' %>
     </h3>
-    <p>You have <%= @count %> items for sale</p>
+    <h4>
+        You have <%= @count %> items for sale
+    </h4>
+    </div>
     <div>
         <% for item in @items %>
             <% if item.user == current_user %>
-                <div class="card selling-item">
-                    <div class="card-body">
-                        <h2 class="card-title selling-title"><%= link_to item.title, item %></h2>
-                        <p class="card-text"><%= truncate(strip_tags(item.description.to_s), length: 80) %></p>
+                <% @items.each do |item| %>
+                    <div class="login-div" style="width: 40rem;">
+                        <%= image_tag item.thumbnail, class: 'item-img' %>
+                        <div class="card-bodycard-text">
+                            <h2 class=" center"><%= item.title %></h2>
+                            <p class="card-bodycard-text-p"><%= truncate(strip_tags(item.description.to_s), length: 80) %></p>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Price: $<%= item.price %></li>
+                            <li class="list-group-item">Condition: <%= item.condition %></li>
+                            <li class="list-group-item">Set: <%= item.set %></li>
+                        </ul>
+                        <div class="card-body card-buttons">
+                            <%= link_to 'View', item, class:"btn btn-primary btn-block btn-special" %>
+                        </div>
+
+                        
+                        <%= link_to 'Edit', edit_item_path(item), class: "btn btn-default btn-block" %>
+                        <%= link_to 'Delete', item, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-block" %>
                     </div>
-                    
-                    <%= link_to 'Edit', edit_item_path(item), class: "btn btn-default" %>
-                    <%= link_to 'Delete', item, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
-                </div>
+                <% end %>
             <% end %>
         <% end %>
     </div>
