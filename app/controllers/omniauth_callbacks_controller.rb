@@ -1,6 +1,5 @@
 class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     def stripe_connect
-      puts '***********'
       auth_data = request.env["omniauth.auth"]
       @user = current_user
       if @user.persisted?

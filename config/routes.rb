@@ -3,7 +3,6 @@ Rails.application.routes.draw do
   resources :items do
     resources :comments, module: :items
   end
-  resource :charges
   root 'items#index'
   get 'selling' => 'sellings#index'
   get 'charges/success' => 'charges#success'
