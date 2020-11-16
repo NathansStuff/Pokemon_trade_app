@@ -49,6 +49,8 @@
     <div>
         <%= render 'comments/comments', commentable: @item %>
         <%= render 'comments/form', commentable: @item %>
+    
+        <h1><%= link_to 'Add to Cart', line_items_path(item_id: @item), class: 'btn btn-block'%></h1>
     </div>
 </div>
 
