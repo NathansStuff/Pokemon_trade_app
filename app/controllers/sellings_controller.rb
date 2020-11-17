@@ -1,5 +1,8 @@
 class SellingsController < ApplicationController
     before_action :authenticate_user!
+#-------------------------------------------------------------------------------
+# Sets variables to use within the view and reduce view logic
+#-------------------------------------------------------------------------------
     def index
         @items = Item.all
         @count = 0
@@ -11,6 +14,9 @@ class SellingsController < ApplicationController
         end
     end
 
+#-------------------------------------------------------------------------------
+# Sets variables to use within the view and reduce view logic
+#-------------------------------------------------------------------------------
     def home
         @items = Item.all
         @count = 0
@@ -28,6 +34,10 @@ class SellingsController < ApplicationController
             end
         end
     end
+    
+#-------------------------------------------------------------------------------
+# Sets variables to use within the view and reduce view logic
+#-------------------------------------------------------------------------------
     def sold
         items = Item.all
         @items = []

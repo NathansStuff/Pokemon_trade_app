@@ -1,6 +1,9 @@
 class ApplicationController < ActionController::Base
     before_action :configure_permitted_parameters, if: :devise_controller?
     protected
+#-----------------------------------------------------------------------#
+# Extends the devise gem's user model fields.
+#-----------------------------------------------------------------------#
     def configure_permitted_parameters
         added_attrs = [:username, :email, :password, :password_confirmation, :avatar, :remember_me]
         devise_parameter_sanitizer.permit :sign_up, keys: added_attrs

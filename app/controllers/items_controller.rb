@@ -2,39 +2,25 @@ class ItemsController < ApplicationController
     before_action :authenticate_user!
     before_action :set_item, only: [:show, :edit, :update, :destroy]
   
+#-------------------------------------------------------------------------------
+# Sets variables to use within the view and reduce view logic
+#-------------------------------------------------------------------------------
     def index
       @items = Item.all
 
     end
   
+#-------------------------------------------------------------------------------
+# Sets variables to use within the view and reduce view logic
+#-------------------------------------------------------------------------------
     def show
       @user = @item.user
       @username = @user
-      
-
-      session = Stripe::Checkout::Session.create(
-        payment_method_types: ['card'],
-        customer_email: @user.email,
-        line_items: [{
-            name: @item.title,
-            description: @item.description,
-            images: [@item.thumbnail],
-            amount: (@item.price * 100).to_i,
-            currency: 'aud',
-            quantity: 1,
-        }],
-        payment_intent_data: {
-            metadata: {
-                event_id: @item.id
-            }
-        },
-        success_url: "#{root_url}payments/success?eventId=#{@item.id}",
-        cancel_url: "#{root_url}events"
-    )
-    @session_id = session.id
-
     end
   
+#-------------------------------------------------------------------------------
+# Creates a new item linked to the current user.
+#-------------------------------------------------------------------------------
     def new
       @item = current_user.items.build
     end
@@ -42,6 +28,12 @@ class ItemsController < ApplicationController
     def edit
     end
   
+#-------------------------------------------------------------------------------
+# Creates a new item that is linked to the current user.
+# Takes :title, :description, :thumbnail, :price, :set, and :condition params 
+# Sets the :active parameter to true and uses all these parameters
+# to add data to the message table with the correct attributes.
+#-------------------------------------------------------------------------------
     def create
       @item = current_user.items.build(item_params)
       @item.active = true
@@ -53,7 +45,10 @@ class ItemsController < ApplicationController
         end
 
     end
-  
+
+#-------------------------------------------------------------------------------
+# Uses the CanCanCan model to check if the user if authorised to edit this item
+#-------------------------------------------------------------------------------
     def update
         authorize! :edit, @item
         if @item.update(item_params)
@@ -63,7 +58,10 @@ class ItemsController < ApplicationController
         end
 
     end
-  
+
+#-------------------------------------------------------------------------------
+# Uses the CanCanCan model to check if the user if authorised to delete this item
+#-------------------------------------------------------------------------------
     def destroy
         authorize! :edit, @item
         @item.destroy
@@ -71,12 +69,16 @@ class ItemsController < ApplicationController
     end
   
     private
-      # Share common setup or constraints between actions.
+#-------------------------------------------------------------------------------
+# Share common setup or constraints between actions.
+#-------------------------------------------------------------------------------
       def set_item
         @item = Item.find(params[:id])
       end
   
-      # Only allow a list of trusted parameters through.
+#-------------------------------------------------------------------------------
+# Only allow a list of trusted parameters through.
+#-------------------------------------------------------------------------------
       def item_params
         params.require(:item).permit(:title, :description, :thumbnail, :price, :condition, :set, :active)
       end

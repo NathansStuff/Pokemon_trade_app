@@ -1,6 +1,8 @@
 class LineItemsController < ApplicationController
+  include CurrentCart
   before_action :set_line_item, only: [:show, :edit, :update, :destroy]
   before_action :set_cart, only: [:create]
+
   # GET /line_items
   # GET /line_items.json
   def index
@@ -24,15 +26,16 @@ class LineItemsController < ApplicationController
   # POST /line_items
   # POST /line_items.json
   def create
-    @line_item = LineItem.new(line_item_params)
+    item = Instrument.find(params[:item_id])
+    @item_item = @cart.add_instrument(item)
 
     respond_to do |format|
-      if @line_item.save
-        format.html { redirect_to @line_item, notice: 'Line item was successfully created.' }
-        format.json { render :show, status: :created, location: @line_item }
+      if @item_item.save
+        format.html { redirect_to @item_item.cart, notice: 'Item added to cart.' }
+        format.json { render :show, status: :created, location: @item_item }
       else
         format.html { render :new }
-        format.json { render json: @line_item.errors, status: :unprocessable_entity }
+        format.json { render json: @item_item.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -54,9 +57,10 @@ class LineItemsController < ApplicationController
   # DELETE /line_items/1
   # DELETE /line_items/1.json
   def destroy
+    @cart = Cart.find(session[:cart_id])
     @line_item.destroy
     respond_to do |format|
-      format.html { redirect_to line_items_url, notice: 'Line item was successfully destroyed.' }
+      format.html { redirect_to cart_path(@cart), notice: 'Item successfully removed.' }
       format.json { head :no_content }
     end
   end
@@ -67,8 +71,8 @@ class LineItemsController < ApplicationController
       @line_item = LineItem.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
+    # Never trust parameters from the scary internet, only allow the white list through.
     def line_item_params
-      params.require(:line_item).permit(:item_id, :cart_id)
+      params.require(:line_item).permit(:instrument_id)
     end
 end
