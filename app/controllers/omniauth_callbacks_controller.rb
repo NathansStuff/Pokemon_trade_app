@@ -1,5 +1,10 @@
 class OmniauthCallbacksController < Devise::OmniauthCallbacksController
-    def stripe_connect
+  
+#-------------------------------------------------------------------------------
+# After the user connects to Stripe, it collects and saves the user informaton
+# This is used when paying the listing owner.
+#-------------------------------------------------------------------------------
+  def stripe_connect
       auth_data = request.env["omniauth.auth"]
       @user = current_user
       if @user.persisted?

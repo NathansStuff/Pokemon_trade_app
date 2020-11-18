@@ -1,10 +1,10 @@
 class CommentsController < ApplicationController
     before_action :authenticate_user!
     
-    #-------------------------------------------------------------------------------
-    # Creates a new comment linked to the current user.
-    # Takes :body params through comment_params function.
-    #-------------------------------------------------------------------------------
+#-------------------------------------------------------------------------------
+# Creates a new comment linked to the current user.
+# Takes :body params through comment_params function.
+#-------------------------------------------------------------------------------
     def create
         @comment = @commentable.comments.new(comment_params)
         @comment.user = current_user

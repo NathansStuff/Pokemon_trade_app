@@ -4,7 +4,7 @@ class SellingsController < ApplicationController
 # Sets variables to use within the view and reduce view logic
 #-------------------------------------------------------------------------------
     def index
-        @items = Item.all
+        @items = Item.includes(:user).all
         @count = 0
         @current_items = []
         for item in @items

@@ -6,7 +6,7 @@ class ItemsController < ApplicationController
 # Sets variables to use within the view and reduce view logic
 #-------------------------------------------------------------------------------
     def index
-      @items = Item.all
+      @items = Item.includes(:user, thumbnail_attachment: :blob).all
 
     end
   
@@ -17,7 +17,9 @@ class ItemsController < ApplicationController
       @user = @item.user
       @username = @user
 
-
+#-------------------------------------------------------------------------------
+# Sets the Stripe payment information for the purchase of an item
+#-------------------------------------------------------------------------------
       session = Stripe::Checkout::Session.create(
         payment_method_types: ['card'],
         customer_email: current_user.email,
