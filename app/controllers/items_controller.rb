@@ -7,16 +7,13 @@ class ItemsController < ApplicationController
 #-------------------------------------------------------------------------------
     def index
       @items = Item.includes(:user, thumbnail_attachment: :blob).all
-
     end
-  
 #-------------------------------------------------------------------------------
 # Sets variables to use within the view and reduce view logic
 #-------------------------------------------------------------------------------
     def show
       @user = @item.user
       @username = @user
-
 #-------------------------------------------------------------------------------
 # Sets the Stripe payment information for the purchase of an item
 #-------------------------------------------------------------------------------
@@ -39,10 +36,7 @@ class ItemsController < ApplicationController
         cancel_url: "#{root_url}items"
     )
     @session_id = session.id
-
-
     end
-  
 #-------------------------------------------------------------------------------
 # Creates a new item linked to the current user.
 #-------------------------------------------------------------------------------

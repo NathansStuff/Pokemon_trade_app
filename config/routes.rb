@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get 'charges/new' => 'charges#new'
   get 'sellings/home' => 'sellings#home'
   get 'sellings/sold' => 'sellings#sold'
+  get 'sellings/current' => 'sellings#current'
   get "payments/success", to: "charges#success"
   post 'payments/webhook', to: 'charges#webhook'
   resources :conversations do

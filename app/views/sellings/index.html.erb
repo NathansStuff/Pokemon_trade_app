@@ -4,34 +4,9 @@
         <%= link_to 'Sell A New Item', new_item_path, class: 'white' %>
     </h3>
     <h4>
-        You have <%= @count %> items for sale
+        You have <%= pluralize(@current_count, 'item') %>  <%= link_to 'for Sale', sellings_current_path, class: 'white' %>
+        <br>
+        You have <%= pluralize(@sold_count, 'items') %> <%= link_to 'Sold', sellings_sold_path, class: 'white' %>.
     </h4>
-    </div>
-    <div>
-        <% for item in @items %>
-            <% if item.user == current_user %>
-                <% @items.each do |item| %>
-                    <div class="login-div" style="width: 40rem;">
-                        <%= image_tag item.thumbnail, class: 'item-img' %>
-                        <div class="card-bodycard-text">
-                            <h2 class=" center"><%= item.title %></h2>
-                            <p class="card-bodycard-text-p"><%= truncate(strip_tags(item.description.to_s), length: 80) %></p>
-                        </div>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">Price: $<%= item.price %></li>
-                            <li class="list-group-item">Condition: <%= item.condition %></li>
-                            <li class="list-group-item">Set: <%= item.set %></li>
-                        </ul>
-                        <div class="card-body card-buttons">
-                            <%= link_to 'View', item, class:"btn btn-primary btn-block btn-special" %>
-                        </div>
-
-                        
-                        <%= link_to 'Edit', edit_item_path(item), class: "btn btn-default btn-block" %>
-                        <%= link_to 'Delete', item, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-block" %>
-                    </div>
-                <% end %>
-            <% end %>
-        <% end %>
     </div>
 </div>
