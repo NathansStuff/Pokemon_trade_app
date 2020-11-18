@@ -7,7 +7,8 @@ class Item < ApplicationRecord
     validates :title, length: { minimum: 10 }
     validates :description, length: { minimum: 20 }
     validates :price, numericality: { other_than: 0 }
-
+    validates :thumbnail, presence: true, content_type: ['image/png', 'image/jpg', 'image/jpeg']
+   
     private
     def note_referenced_by_any_line_item
         unless line_items.empty?

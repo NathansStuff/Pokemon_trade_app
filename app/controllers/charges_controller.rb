@@ -1,7 +1,8 @@
-class ChargesController < ApplicationController    
+class ChargesController < ApplicationController  
+  skip_before_action :verify_authenticity_token, only: [:webhook]  
       def success
         # @item=Item.find(params[:id])
-        redirect_to items_path, notice: "You have successfully bought an item!"
+        # redirect_to items_path, notice: "You have successfully bought an item!"
 
       end
 

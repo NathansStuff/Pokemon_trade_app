@@ -70,3 +70,5 @@ gem 'omniauth-stripe-connect'
 gem 'cancancan'
 gem 'ultrahook'
 gem 'simple_form'
+
+gem 'active_storage_validations'
