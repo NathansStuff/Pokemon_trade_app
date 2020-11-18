@@ -41,7 +41,9 @@
             <% if !can? :edit, @item && @item.active == true %>
                 <%# <button class='btn btn-success btn-block'><%= link_to 'Buy', new_charges_path(amount: @item.price, item: @item, title: @item.title) %> 
                 <% if @item.active == true %>
-                    <button data-stripe="payment">Buy for <%= number_to_currency(@item.price) %></button>
+                    <% if @item.user.id != @item.user.id %>
+                        <button data-stripe="payment">Buy for <%= number_to_currency(@item.price) %></button>
+                    <% end %>
                 <% end %>
             <% end %>
         </div>
