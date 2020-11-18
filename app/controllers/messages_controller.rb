@@ -11,18 +11,7 @@ class MessagesController < ApplicationController
 #-------------------------------------------------------------------------------
     @messages = @conversation.messages
     @message = @conversation.messages.new
-#-------------------------------------------------------------------------------
-# Finds the recipients username
-# Used to set variable within view and reduce view logic
-#-------------------------------------------------------------------------------
-    @all = @conversation.messages.to_a
-    for message in @all
-      if message.user.id != current_user.id
-        @recipient = message.user.username
-      end
-    end
-  end  
-
+  end
 #-------------------------------------------------------------------------------
 # Creates a new message
 #-------------------------------------------------------------------------------

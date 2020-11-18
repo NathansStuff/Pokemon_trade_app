@@ -1,5 +1,5 @@
 <div class='login-div'>
-    <h1 class='center white'>Message with <%= @recipient %></h1>
+    <h1 class='center white'>Messages!</h1>
     <% @messages.each do |message| %>
         <% if message.body %>
             <% user = User.find(message.user_id) %>
@@ -12,17 +12,17 @@
                 </div>
             <% else %>
                 <div class="message-orange">
-                    <p class="message-content"><%= message.body %></p>
+                    <p class="message-content"><%= strip_tags(message.body) %></p>
                     <div class="message-timestamp-right">
                         <%= message.message_time %>
                     </div>
                 </div>
             <% end %>
         <% end %>
-        <% end %>
-        <%= form_for [@conversation, @message] do |f| %>
-            <%= f.rich_text_area :body, class: "form-control" %>
-            <%= f.text_field :user_id, value: current_user.id, type: "hidden" %>
-            <%= f.submit "Send Message", class: "btn btn-lg btn-primary btn-block btn-send" %>
+    <% end %>
+    <%= form_for [@conversation, @message] do |f| %>
+        <%= f.rich_text_area :body, class: "form-control" %>
+        <%= f.text_field :user_id, value: current_user.id, type: "hidden" %>
+        <%= f.submit "Send Message", class: "btn btn-lg btn-primary btn-block btn-send" %>
     <% end %>
 </div>

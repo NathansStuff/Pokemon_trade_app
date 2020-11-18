@@ -1,6 +1,8 @@
 class ChargesController < ApplicationController    
       def success
+        # @item=Item.find(params[:id])
         redirect_to items_path, notice: "You have successfully bought an item!"
+
       end
 
       def webhook
@@ -9,7 +11,7 @@ class ChargesController < ApplicationController
         
         item_id = payment.metadata.item_id
         item = Item.find(item_id)
-        puts "**************************************************************"
+        puts "purple"
         puts item
         item.active = false
         item.update()
@@ -21,6 +23,6 @@ class ChargesController < ApplicationController
         user_id = payment.metadata.user_id
         item = Item.find(item_id)
         
-        redirect_to item_path(item, item: { active: false} )
+        # redirect_to item_path(item, item: { active: false} )
     end    
 end
