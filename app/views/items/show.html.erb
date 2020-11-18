@@ -58,7 +58,7 @@
 
 
 
-
+    <button type="button" class="btn btn-outline-success"><%= link_to 'Add to Order', item_carts_path(@item), method: :post %> </button>
 <button data-stripe="payment">Buy ticket <%= number_to_currency(@item.price) %></button>
 
 <%= link_to 'Back', items_path %>

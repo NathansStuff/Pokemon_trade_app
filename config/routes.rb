@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   root 'items#index'
   get 'selling' => 'sellings#index'
   get 'charges/success' => 'charges#success'
+  get 'charges/new' => 'charges#new'
   get 'sellings/home' => 'sellings#home'
   get 'sellings/sold' => 'sellings#sold'
   get "payments/success", to: "charges#success"
