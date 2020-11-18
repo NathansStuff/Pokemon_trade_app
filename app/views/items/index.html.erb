@@ -7,8 +7,6 @@
                 <p class="card-bodycard-text-p"><%= truncate(strip_tags(item.description.to_s), length: 80) %></p>
             </div>
             <ul class="list-group list-group-flush">
-                <li><%= item.user.email %>
-                </li>
                 <li class="list-group-item">Price: $<%= item.price %></li>
                 <li class="list-group-item">Condition: <%= item.condition %></li>
                 <li class="list-group-item">Set: <%= item.set %></li>
