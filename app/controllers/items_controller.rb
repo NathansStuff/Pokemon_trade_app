@@ -16,6 +16,29 @@ class ItemsController < ApplicationController
     def show
       @user = @item.user
       @username = @user
+
+
+      session = Stripe::Checkout::Session.create(
+        payment_method_types: ['card'],
+        customer_email: current_user.email,
+        line_items: [{
+            name: @item.title,
+            description: @item.description,
+            amount: (@item.price * 100).to_i,
+            currency: 'aud',
+            quantity: 1,
+        }],
+        payment_intent_data: {
+            metadata: {
+                event_id: @item.id
+            }
+        },
+        success_url: "#{root_url}payments/success?itemId=#{@item.id}",
+        cancel_url: "#{root_url}items"
+    )
+    @session_id = session.id
+
+
     end
   
 #-------------------------------------------------------------------------------

@@ -1,9 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: { omniauth_callbacks: "omniauth_callbacks" }
-  resources :carts
   resources :items do
     resources :comments, module: :items
-    resources :carts, only: [:create]
   end
   root 'items#index'
   get 'selling' => 'sellings#index'
