@@ -2,22 +2,35 @@ class User < ApplicationRecord
   has_many :items, dependent: :destroy
   has_one_attached :avatar, dependent: :destroy
   
-  
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+#-------------------------------------------------------------------------------
+# Add omniauth to devise to enable omniauth to use stripe to link to user account
+#-------------------------------------------------------------------------------
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: [:stripe_connect]
 
 
+#-------------------------------------------------------------------------------
+# Some logic as it applies to the user model across multiple controller views
+#-------------------------------------------------------------------------------
 
+#-------------------------------------------------------------------------------
+# Checks if user stripe data was saved after connecting to Stripe (set on return in omniauth controller)
+#-------------------------------------------------------------------------------
   def can_receive_payment?
     uid? && provider? && access_code? && publishable_key?
   end
 
+#-------------------------------------------------------------------------------
+# Controls the size of the user avatar image
+#-------------------------------------------------------------------------------
   def avatar_thumbnail
     avatar.variant(resize: '100x100!').processed
   end
 
+#-------------------------------------------------------------------------------
+# Logging in logic as it relates to both username and password
+# User name and email cannot match across users because both are used for logging in
+#-------------------------------------------------------------------------------
   attr_writer :login
   def login
     @login || username || email
@@ -33,7 +46,6 @@ class User < ApplicationRecord
   end
 
   validate :validate_username
-
   def validate_username
     if User.where(email: username).exists?
       errors.add(:username, :invalid)

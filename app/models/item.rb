@@ -1,5 +1,4 @@
 class Item < ApplicationRecord
-    before_destroy :not_referenced_by_any_line_item
     belongs_to :user
     has_rich_text :description
     has_one_attached :thumbnail
@@ -8,12 +7,4 @@ class Item < ApplicationRecord
     validates :description, length: { minimum: 20 }
     validates :price, numericality: { other_than: 0 }
     validates :thumbnail, presence: true, content_type: ['image/png', 'image/jpg', 'image/jpeg']
-   
-    private
-    def note_referenced_by_any_line_item
-        unless line_items.empty?
-            errors.add(:base, 'Cart items present')
-            throw :abort
-        end
-    end
 end
