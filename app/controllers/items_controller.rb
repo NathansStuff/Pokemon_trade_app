@@ -1,12 +1,19 @@
 class ItemsController < ApplicationController
-    before_action :authenticate_user!
+    before_action :authenticate_user!, except: [:index]
     before_action :set_item, only: [:show, :edit, :update, :destroy]
   
 #-------------------------------------------------------------------------------
 # Sets variables to use within the view and reduce view logic
+# Only shows active items ie, not sold.
 #-------------------------------------------------------------------------------
     def index
-      @items = Item.includes(:user, thumbnail_attachment: :blob).all
+        @load = Item.includes(:user, thumbnail_attachment: :blob)
+        @items = []
+            for item in @load
+                if item.active == true
+                @items << item
+                end
+            end
     end
 #-------------------------------------------------------------------------------
 # Sets variables to use within the view and reduce view logic
